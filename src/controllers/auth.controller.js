@@ -5,6 +5,11 @@ import { createAccesToken } from "../libs/jwt.js"; // Importing the createAccess
 export const register = async (req, res) => {
   const { username, email, password } = req.body; // Extracting the username, email, and password from the request body
   try {
+    const userFound = await User.findOne({ email });
+    if (userFound) {
+      return res.status(400).json(["The email is already in use"]);
+    }
+
     const passwordHash = await bcrypt.hash(password, 10); // Hashing the password using bcrypt with a salt of 10 rounds
 
     const newUser = new User({

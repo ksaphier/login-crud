@@ -26,7 +26,7 @@ export const validateSchema =
           // 'error.errors' contains details of what went wrong during validation.
           // For each error object in 'error.errors', extract and return its 'message' property.
           // This creates an array of error messages that are sent back to the client.
-          .json({ error: error.errors.map((error) => error.message) })
+          .json(error.errors.map((error) => error.message))
       );
     }
   };
