@@ -1,9 +1,15 @@
 // Import necessary hooks and PropTypes from React
-import { createContext, useState, useMemo, useCallback } from "react";
+import {
+  createContext,
+  useState,
+  useMemo,
+  useCallback,
+  useEffect,
+} from "react";
 import PropTypes from "prop-types";
 
 // Import the API call for registration
-import { registerRequest } from "../api/auth";
+import { registerRequest, loginRequest } from "../api/auth";
 
 // Create a new context for authentication
 export const AuthContext = createContext();
@@ -27,16 +33,38 @@ export const AuthProvider = ({ children }) => {
     }
   }, []); // Empty dependency array means the function is recreated only when the component mounts
 
+  const signin = useCallback(async (user) => {
+    try {
+      const res = await loginRequest(user);
+      console.log(res);
+    } catch (error) {
+      const e = error.response.data;
+      if (Array.isArray(e)) {
+        return setErrors(e);
+      }
+      setErrors([e.message]); // Handle errors
+    }
+  }, []);
+
+  useEffect(() => {
+    if (errors.length > 0) {
+      setTimeout(() => {
+        setErrors([]);
+      }, 5000);
+    }
+  });
+
   // useMemo hook to memoize the context value
   // This optimizes performance by preventing unnecessary re-renders
   const value = useMemo(
     () => ({
       signup,
+      signin,
       user,
       isAuthenticated,
       errors,
     }),
-    [signup, user, isAuthenticated, errors] // Dependency array for useMemo
+    [signup, signin, user, isAuthenticated, errors] // Dependency array for useMemo
   );
 
   // Context provider that passes the memoized value to its children
