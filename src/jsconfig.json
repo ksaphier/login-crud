@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "es6", // Set the JavaScript language version
+    "module": "commonjs", // If you are using CommonJS modules
+    "esModuleInterop": true
+  },
+  "include": ["./**/*"], // Include all files in the project
+  "exclude": ["node_modules", "dist"] // Exclude node_modules and dist folders
+}

@@ -19,9 +19,9 @@ function LoginPage() {
     <div className="bg-zinc-800 flex h-[calc(100vh)] items-center justify-center">
       <div className="bg-zinc-500 max-w-md p-8 rounded-3xl">
         <h1 className="text-center mb-4 text-xl">Login</h1>
-        {loginErrors.map((error) => (
+        {loginErrors.map((error, index) => (
           <div
-            key={error}
+            key={`${error}-${index}`} // Unique key using error and index
             className="bg-red-500 p-2 text-white rounded-full my-2 text-center"
           >
             {error}
