@@ -12,58 +12,70 @@ function LoginPage() {
 
   const { signin, errors: loginErrors, isAuthenticated } = useAuth();
   const navigate = useNavigate();
-  const onSubmit = handleSubmit((data) => {
-    signin(data);
-  });
 
   useEffect(() => {
     if (isAuthenticated) navigate("/tasks");
-  }, [isAuthenticated]);
+  }, [isAuthenticated, navigate]);
+
+  const onSubmit = (data) => {
+    signin(data);
+  };
 
   return (
-    <div className="bg-zinc-800 flex h-[calc(100vh)] items-center justify-center">
-      <div className="bg-zinc-500 max-w-md p-8 rounded-3xl">
-        <h1 className="text-center mb-4 text-xl">Login</h1>
-        {loginErrors.map((error, index) => (
-          <div
-            key={`${error}-${index}`} // Unique key using error and index
-            className="bg-red-500 p-2 text-white rounded-full my-2 text-center"
-          >
-            {error}
+    <div className="flex h-screen bg-gray-100">
+      <div className="m-auto w-full max-w-md">
+        <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">
+          Login to Your Account
+        </h2>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="bg-white shadow rounded-3xl p-8"
+        >
+          {loginErrors.map((error, index) => (
+            <div
+              key={index}
+              className="bg-red-500 text-white text-center p-2 rounded-3xl mb-4"
+            >
+              {error}
+            </div>
+          ))}
+          <div className="mb-5">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              {...register("email", { required: true })}
+              className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-3xl focus:border-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-blue-300 mb-3"
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm mb-3">Email is required</p>
+            )}
           </div>
-        ))}
-        <form onSubmit={onSubmit}>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            {...register("email", { required: true })}
-            className="w-full bg-zinc-700 text-white px-4 py-2 rounded-full my-2"
-          />
-          {errors.email && <p className="text-red-500">Email is required</p>}
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            {...register("password", { required: true })}
-            className="w-full bg-zinc-700 text-white px-4 py-2 rounded-full my-2"
-          />
-          {errors.password && (
-            <p className="text-red-500">Password is required</p>
-          )}
+          <div className="mb-6">
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              {...register("password", { required: true })}
+              className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-3xl focus:border-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-blue-300 mb-3"
+            />
+            {errors.password && (
+              <p className="text-red-500 text-sm mb-3">Password is required</p>
+            )}
+          </div>
           <button
             type="submit"
-            className="w-full bg-zinc-600 hover:bg-zinc-400 text-white px-4 py-2 rounded-full mt-4"
+            className="w-full px-4 py-2 leading-5 text-white transition-colors duration-200 transform bg-blue-500 rounded-3xl hover:bg-blue-600 focus:outline-none focus:bg-blue-600 mb-4"
           >
-            Log in
+            Log In
           </button>
+          <div className="text-center">
+            <p className="text-gray-600">Don’t have an account?</p>
+            <Link to="/register" className="text-blue-500 hover:text-blue-600">
+              Sign up
+            </Link>
+          </div>
         </form>
-        <p className="flex mt-4 justify-evenly">
-          Don`t have an account?
-          <Link to="/register" className="text-sky-500">
-            Sign up
-          </Link>
-        </p>
       </div>
     </div>
   );

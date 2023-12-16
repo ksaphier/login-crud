@@ -1,4 +1,3 @@
-
 // Import necessary hooks and PropTypes from React
 import {
   createContext,
@@ -10,7 +9,12 @@ import {
 import PropTypes from "prop-types";
 
 // Import the API call for registration
-import { registerRequest, loginRequest, verifyTokenRequest } from "../api/auth";
+import {
+  registerRequest,
+  loginRequest,
+  logoutRequest,
+  verifyTokenRequest,
+} from "../api/auth";
 
 import Cookies from "js-cookie";
 
@@ -49,6 +53,16 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       const e = error.response.data;
       Array.isArray(e) ? setErrors(e) : setErrors([e.message]);
+    }
+  }, []);
+
+  const logout = useCallback(async () => {
+    try {
+      await logoutRequest();
+      updateAuthState(false, null); // Reset authentication state
+      window.location.reload(); // Refresh the page
+    } catch (error) {
+      console.log(error);
     }
   }, []);
 
@@ -104,12 +118,13 @@ export const AuthProvider = ({ children }) => {
     () => ({
       signup,
       signin,
+      logout,
       loading,
       user,
       isAuthenticated,
       errors,
     }),
-    [signup, signin, loading, user, isAuthenticated, errors]
+    [signup, signin, logout, loading, user, isAuthenticated, errors]
   );
 
   // Context provider that passes the memoized value to its children

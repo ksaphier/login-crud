@@ -9,6 +9,8 @@ import TaskFormPage from "./pages/TasksFormPage";
 import ProfilePage from "./pages/ProfilePage";
 import HomePage from "./pages/HomePage";
 
+import Navbar from "./components/Navabar";
+
 import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
@@ -16,17 +18,20 @@ function App() {
     <AuthProvider>
       <TaskProvider>
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route element={<ProtectedRoute />}>
-              <Route path="/tasks" element={<TasksPage />} />
-              <Route path="/add-task" element={<TaskFormPage />} />
-              <Route path="/tasks/:id" element={<TaskFormPage />} />
-              <Route path="/profile" element={<ProfilePage />} />
-            </Route>
-          </Routes>
+          <Navbar />
+          <div className="pt-16">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path="/tasks" element={<TasksPage />} />
+                <Route path="/add-task" element={<TaskFormPage />} />
+                <Route path="/tasks/:id" element={<TaskFormPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+              </Route>
+            </Routes>
+          </div>
         </BrowserRouter>
       </TaskProvider>
     </AuthProvider>
