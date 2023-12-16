@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../context/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import InputField from "../components/InputField";
+import { validationMessages } from "../utils/formValidation";
 
 function LoginPage() {
   const {
@@ -11,6 +13,8 @@ function LoginPage() {
   } = useForm();
 
   const { signin, errors: loginErrors, isAuthenticated } = useAuth();
+  console.log(errors);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,30 +43,34 @@ function LoginPage() {
               {error}
             </div>
           ))}
-          <div className="mb-5">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              {...register("email", { required: true })}
-              className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-3xl focus:border-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-blue-300 mb-3"
-            />
-            {errors.email && (
-              <p className="text-red-500 text-sm mb-3">Email is required</p>
-            )}
-          </div>
-          <div className="mb-6">
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              {...register("password", { required: true })}
-              className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-3xl focus:border-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-blue-300 mb-3"
-            />
-            {errors.password && (
-              <p className="text-red-500 text-sm mb-3">Password is required</p>
-            )}
-          </div>
+          <InputField
+            name="email"
+            type="email"
+            placeholder="Email"
+            register={register}
+            validation={{
+              required: validationMessages.required,
+              pattern: {
+                value: /^\S+@\S+\.\S+$/,
+                message: validationMessages.email,
+              },
+            }}
+            error={errors.email}
+          />
+          <InputField
+            name="password"
+            type="password"
+            placeholder="Password"
+            register={register}
+            validation={{
+              required: validationMessages.required,
+              minLength: {
+                value: 6,
+                message: validationMessages.minLength(8),
+              },
+            }}
+            error={errors.password}
+          />
           <button
             type="submit"
             className="w-full px-4 py-2 leading-5 text-white transition-colors duration-200 transform bg-blue-500 rounded-3xl hover:bg-blue-600 focus:outline-none focus:bg-blue-600 mb-4"
