@@ -13,7 +13,6 @@ function LoginPage() {
   } = useForm();
 
   const { signin, errors: loginErrors, isAuthenticated } = useAuth();
-  console.log(errors);
 
   const navigate = useNavigate();
 
