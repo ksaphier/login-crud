@@ -7,6 +7,16 @@ function TasksPage() {
 
   const task0 = { title: "No Task", desc: "", _id: "0" };
 
+  const handleDelete = (task) => {
+    // Delete logic here
+    console.log("Deleting task:", task);
+  };
+
+  const handleEdit = (task) => {
+    // Edit logic here
+    console.log("Editing task:", task);
+  };
+
   useEffect(() => {
     getTasks();
   }, []);
@@ -18,7 +28,13 @@ function TasksPage() {
           <TaskCard task={task0} id={task0._id} />
         ) : (
           tasks.map((task) => (
-            <TaskCard key={task._id} task={task} id={task._id} />
+            <TaskCard
+              key={task._id}
+              task={task}
+              id={task._id}
+              onDelete={handleDelete}
+              onEdit={handleEdit}
+            />
           ))
         )}
       </div>
