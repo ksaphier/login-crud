@@ -78,7 +78,7 @@ function LoginPage() {
           </button>
           <div className="text-center">
             <p className="text-gray-600">Don’t have an account?</p>
-            <Link to="/register" className="text-blue-500 hover:text-blue-600">
+            <Link to="/register" className="text-blue-400 hover:text-blue-700">
               Sign up
             </Link>
           </div>

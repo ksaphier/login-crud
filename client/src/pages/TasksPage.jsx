@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { useTasks } from "../context/TaskContext";
-import TaskCard from "../components/TaskCard"
+import TaskCard from "../components/TaskCard";
 
 function TasksPage() {
   const { getTasks, tasks } = useTasks();
+
+  const task0 = { title: "No Task", desc: "", _id: "0" };
 
   useEffect(() => {
     getTasks();
@@ -13,10 +15,10 @@ function TasksPage() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-8">
       <div className="w-full max-w-3xl px-4">
         {tasks.length === 0 ? (
-          <TaskCard title={'No Task'} desc={'Add a new task! Click in the right top corner'} key={'0'} />
+          <TaskCard task={task0} id={task0._id} />
         ) : (
           tasks.map((task) => (
-            <TaskCard title={task.title} desc={task.desc} key={task._id} />
+            <TaskCard key={task._id} task={task} id={task._id} />
           ))
         )}
       </div>
