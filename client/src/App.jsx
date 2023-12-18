@@ -19,7 +19,7 @@ function App() {
       <TaskProvider>
         <BrowserRouter>
           <Navbar />
-          <div className="pt-16">
+          <div className="pt-16 md:pt-16 bg-slate-200">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<LoginPage />} />
