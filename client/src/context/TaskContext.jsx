@@ -3,6 +3,8 @@ import {
   createTaskRequest,
   deleteTaskRequest,
   getTasksRequest,
+  getTaskRequest,
+  updateTaskRequest,
 } from "../api/tasks";
 import PropTypes from "prop-types";
 
@@ -19,9 +21,22 @@ export function TaskProvider({ children }) {
       setTasks(res.data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }, []);
+
+  const getTask = async (id) => {
+    setLoading(true);
+    try {
+      const res = await getTaskRequest(id);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const createTask = async (task) => {
     setLoading(true);
@@ -29,8 +44,9 @@ export function TaskProvider({ children }) {
       return await createTaskRequest(task).data;
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const deleteTask = async (task) => {
@@ -40,8 +56,21 @@ export function TaskProvider({ children }) {
       return res.data;
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
+  };
+
+  const updateTask = async (id, task) => {
+    setLoading(true);
+    try {
+      const res = await updateTaskRequest(id, task);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -51,6 +80,8 @@ export function TaskProvider({ children }) {
         createTask,
         deleteTask,
         getTasks,
+        getTask,
+        updateTask,
         loading,
       }}
     >

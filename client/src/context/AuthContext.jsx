@@ -1,6 +1,17 @@
-import { createContext, useState, useMemo, useCallback, useEffect } from "react";
+import {
+  createContext,
+  useState,
+  useMemo,
+  useCallback,
+  useEffect,
+} from "react";
 import PropTypes from "prop-types";
-import { registerRequest, loginRequest, logoutRequest, verifyTokenRequest } from "../api/auth";
+import {
+  registerRequest,
+  loginRequest,
+  logoutRequest,
+  verifyTokenRequest,
+} from "../api/auth";
 import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
@@ -46,7 +57,6 @@ export const AuthProvider = ({ children }) => {
     try {
       await logoutRequest();
       updateAuthState(false, null);
-      window.location.reload();
     } catch (error) {
       console.log(error);
     } finally {

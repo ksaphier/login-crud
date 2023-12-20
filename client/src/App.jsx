@@ -1,25 +1,28 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { TaskProvider } from "./context/TaskContext";
-
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import TasksPage from "./pages/TasksPage";
 import TaskFormPage from "./pages/TasksFormPage";
 import ProfilePage from "./pages/ProfilePage";
 import HomePage from "./pages/HomePage";
-
 import Navbar from "./components/Navabar";
-
 import ProtectedRoute from "./ProtectedRoute";
+import PropTypes from "prop-types";
+
+function AuthProviderWithNavigate({ children }) {
+  const navigate = useNavigate();
+  return <AuthProvider navigate={navigate}>{children}</AuthProvider>;
+}
 
 function App() {
   return (
-    <AuthProvider>
+    <BrowserRouter>
       <TaskProvider>
-        <BrowserRouter>
+        <AuthProviderWithNavigate>
           <Navbar />
-          <div className="pt-16 md:pt-16 bg-slate-100">
+          <div className="pt-16 bg-slate-100">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<LoginPage />} />
@@ -32,10 +35,14 @@ function App() {
               </Route>
             </Routes>
           </div>
-        </BrowserRouter>
+        </AuthProviderWithNavigate>
       </TaskProvider>
-    </AuthProvider>
+    </BrowserRouter>
   );
 }
 
 export default App;
+
+AuthProviderWithNavigate.propTypes = {
+  children: PropTypes.node.isRequired,
+};

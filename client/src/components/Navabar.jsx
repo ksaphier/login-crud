@@ -14,9 +14,9 @@ function Navbar() {
       style={navStyle}
       className="bg-transparent text-white fixed top-0 w-full z-50"
     >
-      <div className="container mx-auto md:mt-4 flex justify-between bg-slate-100 py-2 md:px-3 max-w-full md:max-w-navbar md:rounded-3xl shadow-[0_8px_60px_-15px_rgba(12,144,167,0.25)] hover:shadow-[0_8px_60px_-15px_rgba(12,144,167,0.5)]">
+      <div className="container mx-auto md:mt-4 flex justify-between bg-slate-100 py-3 md:px-3 max-w-full md:max-w-navbar md:rounded-3xl shadow-[0_8px_60px_-15px_rgba(12,144,167,0.25)] hover:shadow-[0_8px_60px_-15px_rgba(12,144,167,0.5)]">
         <Link
-          to="/"
+          to={isAuthenticated ? "/tasks" : "/"}
           className="md:text-2xl font-bold hover:text-slate-300 ml-4"
         >
           Task Manager
@@ -50,7 +50,7 @@ function Navbar() {
             </>
           ) : (
             <>
-              <li className="mx-4">
+              <li className="">
                 <Link
                   to="/login"
                   className="text-sm hover:text-gray-900 hover:bg-cyan-400 px-4 py-2 rounded-3xl"
@@ -58,7 +58,7 @@ function Navbar() {
                   Login
                 </Link>
               </li>
-              <li className="mx-4">
+              <li className="">
                 <Link
                   to="/register"
                   className="text-sm hover:text-gray-900 hover:bg-cyan-400 px-4 py-2 rounded-3xl"

@@ -1,6 +1,11 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 
-function TaskCard({ tasks, onDelete, onEdit }) {
+dayjs.extend(utc);
+
+function TaskCard({ tasks, onDelete }) {
   if (!tasks.length) {
     return (
       <div className="bg-white shadow-md rounded-3xl px-6 py-4 mb-6">
@@ -24,15 +29,15 @@ function TaskCard({ tasks, onDelete, onEdit }) {
           </div>
           <div className="pt-4 flex justify-between items-center">
             <p className="text-gray-600">
-              {task.date ? new Date(task.date).toLocaleTimeString() : ""}
+              {dayjs(task.date).utc().format("DD/MM/YYYY")}
             </p>
             <div className="flex items-center">
-              <button
-                onClick={() => onEdit(task)}
+              <Link
+                to={`/tasks/${task._id}`}
                 className="bg-slate-400 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded-l-3xl"
               >
                 Edit
-              </button>
+              </Link>
               <button
                 onClick={() => onDelete(task)}
                 className="bg-slate-800 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded-r-3xl"
