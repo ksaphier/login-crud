@@ -26,7 +26,7 @@ export function TaskProvider({ children }) {
     }
   }, []);
 
-  const getTask = async (id) => {
+  const getTask = useCallback(async (id) => {
     setLoading(true);
     try {
       const res = await getTaskRequest(id);
@@ -36,7 +36,7 @@ export function TaskProvider({ children }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   const createTask = async (task) => {
     setLoading(true);

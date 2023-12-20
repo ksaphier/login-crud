@@ -22,7 +22,7 @@ function App() {
       <TaskProvider>
         <AuthProviderWithNavigate>
           <Navbar />
-          <div className="pt-16 bg-slate-100">
+          <div className="bg-slate-100">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<LoginPage />} />

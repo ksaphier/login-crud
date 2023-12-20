@@ -14,22 +14,27 @@ function Navbar() {
       style={navStyle}
       className="bg-transparent text-white fixed top-0 w-full z-50"
     >
-      <div className="container mx-auto md:mt-4 flex justify-between bg-slate-100 py-3 md:px-3 max-w-full md:max-w-navbar md:rounded-3xl shadow-[0_8px_60px_-15px_rgba(12,144,167,0.25)] hover:shadow-[0_8px_60px_-15px_rgba(12,144,167,0.5)]">
+      <div
+        className="container mx-auto md:mt-4 flex justify-between items-center bg-slate-100 py-2 px-3 max-w-full md:max-w-navbar md:rounded-3xl shadow-[0_8px_60px_-15px_rgba(12,144,167,0.25)] hover:shadow-[0_8px_60px_-15px_rgba(12,144,167,0.5)]"
+        style={{ height: "64px" }}
+      >
+        {" "}
+        {/* Fixed height */}
         <Link
           to={isAuthenticated ? "/tasks" : "/"}
-          className="md:text-2xl font-bold hover:text-slate-300 ml-4"
+          className="text-2xl font-bold hover:text-slate-300 md:ml-4"
         >
           Task Manager
         </Link>
         <ul className="flex items-center">
           {isAuthenticated ? (
             <>
-              <li className="">
-                <span className="text-sm font-semibold px-4 py-2">
+              <li className="flex items-center">
+                <span className="text-sm font-semibold px-4">
                   Welcome {user.username}
                 </span>
               </li>
-              <li className="">
+              <li className="flex items-center">
                 <Link
                   to="/add-task"
                   className="text-sm hover:text-gray-900 hover:bg-cyan-400 px-4 py-2 rounded-3xl"
@@ -37,11 +42,9 @@ function Navbar() {
                   Add Task
                 </Link>
               </li>
-              <li className="">
+              <li className="flex items-center">
                 <button
-                  onClick={() => {
-                    logout();
-                  }}
+                  onClick={logout}
                   className="text-sm hover:text-gray-900 hover:bg-cyan-400 px-4 py-2 rounded-3xl"
                 >
                   Logout
@@ -50,7 +53,7 @@ function Navbar() {
             </>
           ) : (
             <>
-              <li className="">
+              <li className="flex items-center">
                 <Link
                   to="/login"
                   className="text-sm hover:text-gray-900 hover:bg-cyan-400 px-4 py-2 rounded-3xl"
@@ -58,7 +61,7 @@ function Navbar() {
                   Login
                 </Link>
               </li>
-              <li className="">
+              <li className="flex items-center">
                 <Link
                   to="/register"
                   className="text-sm hover:text-gray-900 hover:bg-cyan-400 px-4 py-2 rounded-3xl"

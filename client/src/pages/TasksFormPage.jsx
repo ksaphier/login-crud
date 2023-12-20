@@ -81,7 +81,7 @@ function TaskFormPage() {
               id="description"
               rows={3}
               placeholder="Task details"
-              {...register("desc")}
+              {...register("desc", { required: true })}
               className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-3xl focus:border-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-blue-300"
             />
           </div>
