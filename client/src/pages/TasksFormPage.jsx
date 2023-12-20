@@ -1,16 +1,21 @@
 import { useForm } from "react-hook-form";
-import { useTasks } from "../context/TaskContext";
 import { useNavigate } from "react-router-dom";
+import { useTasks } from "../context/useTask";
+import LoadingPage from "../components/LoadingPage";
 
 function TaskFormPage() {
   const { register, handleSubmit } = useForm();
-  const { createTask } = useTasks();
+  const { createTask, loading } = useTasks();
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     await createTask(data);
     navigate("/tasks");
   };
+
+  if (loading) {
+    return <LoadingPage />;
+  }
 
   return (
     <div className="flex h-screen bg-gray-100">
