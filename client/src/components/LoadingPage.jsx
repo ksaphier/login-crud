@@ -1,9 +1,8 @@
 function LoadingPage() {
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="text-center">
-        <div className="spinner"></div>
-        <h1 className="text-xl font-semibold text-gray-800 mt-4">Loading...</h1>
+    <div className="wrapper h-screen">
+      <div className="box max-w-3xl rounded-3xl">
+        <p>Loading...</p>
       </div>
     </div>
   );

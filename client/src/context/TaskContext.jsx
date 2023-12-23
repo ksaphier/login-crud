@@ -19,22 +19,21 @@ export function TaskProvider({ children }) {
     try {
       const res = await getTasksRequest();
       setTasks(res.data);
+      setLoading(false);
+      return res.data
     } catch (error) {
       console.log(error);
-    } finally {
-      setLoading(false);
-    }
+    } 
   }, []);
 
   const getTask = useCallback(async (id) => {
     setLoading(true);
     try {
       const res = await getTaskRequest(id);
+      setLoading(false);
       return res.data;
     } catch (error) {
       console.log(error);
-    } finally {
-      setLoading(false);
     }
   }, []);
 

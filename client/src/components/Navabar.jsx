@@ -5,48 +5,28 @@ function Navbar() {
   const { isAuthenticated, logout, user } = useAuth();
 
   const navStyle = {
-    background:
-      "linear-gradient(to top, transparent, rgba(226, 232, 240, 1) 50%)",
+    background: "linear-gradient(to top, transparent, rgba(30 41 59, 1) 50%)",
   };
 
   return (
-    <nav
-      style={navStyle}
-      className="bg-transparent text-white fixed top-0 w-full z-50"
-    >
-      <div
-        className="container mx-auto md:mt-4 flex justify-between items-center bg-slate-100 px-3 max-w-full md:max-w-navbar md:rounded-3xl shadow-[0_8px_60px_-15px_rgba(12,144,167,0.25)] hover:shadow-[0_8px_60px_-15px_rgba(12,144,167,0.5)]"
-        style={{ height: "64px" }}
-      >
-        {" "}
-        {/* Fixed height */}
-        <Link
-          to={isAuthenticated ? "/tasks" : "/"}
-          className="text-2xl font-bold hover:text-slate-300 md:ml-4"
-        >
+    <nav style={navStyle} className="bg-slate-800 text-white fixed top-0 w-full z-50">
+      <div className="container mx-auto md:mt-4 flex justify-between items-center bg-gray-900 px-3 md:max-w-4/5 md:rounded-3xl shadow-[0_8px_60px_-15px_rgba(209,213,219,0.25)] hover:shadow-[0_8px_60px_-15px_rgba(209,213,219,0.5)] h-16"> {/* Adjusted height and shadow color */}
+        <Link to={isAuthenticated ? "/tasks" : "/"} className="text-2xl font-bold hover:text-rose-400 md:ml-4">
           Task Manager
         </Link>
         <ul className="flex items-center">
           {isAuthenticated ? (
             <>
               <li className="flex items-center">
-                <span className="text-sm font-semibold px-4">
-                  Welcome {user.username}
-                </span>
+                <span className="text-sm font-semibold px-4">Welcome {user.username}</span>
               </li>
               <li className="flex items-center">
-                <Link
-                  to="/add-task"
-                  className="text-sm hover:text-gray-900 hover:bg-cyan-400 px-4 py-2 rounded-3xl"
-                >
+                <Link to="/add-task" className="text-sm hover:text-gray-100 hover:bg-orange-500 px-4 py-2 rounded-3xl">
                   Add Task
                 </Link>
               </li>
               <li className="flex items-center">
-                <button
-                  onClick={logout}
-                  className="text-sm hover:text-gray-900 hover:bg-cyan-400 px-4 py-2 rounded-3xl"
-                >
+                <button onClick={logout} className="text-sm hover:text-gray-100 hover:bg-orange-500 px-4 py-2 rounded-3xl">
                   Logout
                 </button>
               </li>
@@ -54,18 +34,12 @@ function Navbar() {
           ) : (
             <>
               <li className="flex items-center">
-                <Link
-                  to="/login"
-                  className="text-sm hover:text-gray-900 hover:bg-cyan-400 px-4 py-2 rounded-3xl"
-                >
+                <Link to="/login" className="text-sm hover:text-gray-100 hover:bg-orange-500 px-4 py-2 rounded-3xl">
                   Login
                 </Link>
               </li>
               <li className="flex items-center">
-                <Link
-                  to="/register"
-                  className="text-sm hover:text-gray-900 hover:bg-cyan-400 px-4 py-2 rounded-3xl"
-                >
+                <Link to="/register" className="text-sm hover:text-gray-100 hover:bg-orange-500 px-4 py-2 rounded-3xl">
                   Register
                 </Link>
               </li>

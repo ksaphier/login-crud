@@ -6,16 +6,17 @@ const InputField = ({ name, register, validation, error, ...rest }) => {
       <input
         {...register(name, validation)}
         {...rest}
-        className={`block w-full px-4 py-2 text-gray-700 bg-white border ${
-          error ? "border-red-900" : "border-gray-300"
-        } rounded-3xl focus:ring focus:ring-blue-300 mb-3`}
+        className={`h-10 block w-full px-4 py-2 text-gray-700 bg-white border ${
+          error ? "border-orange-500" : "border-gray-300"
+        } rounded-3xl focus:ring focus:ring-rose-300 mb-3`}
       />
+      {/* Error message or placeholder to maintain consistent spacing */}
       <p
-        className={`text-red-900 text-sm absolute bottom-0 transform translate-y-[1.5rem] ${
+        className={`text-rose-500 text-sm absolute bottom-0 transform translate-y-[1.5rem] ${
           error ? "visible" : "invisible"
         }`}
       >
-        {error ? error.message : "Placeholder"}
+        {error ? error.message : "Error placeholder"}
       </p>
     </div>
   );
@@ -26,7 +27,6 @@ InputField.propTypes = {
   register: PropTypes.func.isRequired,
   validation: PropTypes.object,
   error: PropTypes.object,
-  // Include other PropTypes as needed
 };
 
 export default InputField;
