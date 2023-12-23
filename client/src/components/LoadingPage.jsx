@@ -1,7 +1,7 @@
 function LoadingPage() {
   return (
     <div className="wrapper h-screen">
-      <div className="box max-w-3xl rounded-3xl">
+      <div className="box">
         <p>Loading...</p>
       </div>
     </div>
