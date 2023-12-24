@@ -48,7 +48,7 @@ function TaskFormPage() {
   }
 
   return (
-    <div className="flex h-screen bg-gray-800">
+    <div className="flex bg-gray-800" style={{ height: 'calc(100vh - 64px)' }}>
       <div className="m-auto w-full max-w-md">
         <h2 className="text-2xl font-semibold text-center text-gray-100 mb-6">
           {params.id ? "Edit Task" : "Create a New Task"}

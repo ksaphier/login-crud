@@ -22,7 +22,7 @@ function App() {
       <TaskProvider>
         <AuthProviderWithNavigate>
           <Navbar />
-          <div className="bg-slate-800 pt-16">
+          <div className="bg-gray-800" style={{ paddingBottom: '64px' }}>
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<LoginPage />} />

@@ -26,7 +26,7 @@ function LoginPage() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-800">
+    <div className="flex bg-gray-800" style={{ height: 'calc(100vh - 64px)' }}>
       <div className="m-auto w-full max-w-md">
         <h2 className="text-2xl font-semibold text-center text-gray-100 mb-6">
           Login to Your Account
@@ -56,7 +56,7 @@ function LoginPage() {
               required: validationMessages.required,
               minLength: {
                 value: 6,
-                message: validationMessages.minLength(8),
+                message: validationMessages.minLength(6),
               },
             }}
             error={errors.password}
@@ -66,7 +66,7 @@ function LoginPage() {
             type="submit"
           />
           <div className="text-center mt-6 text-gray-600">
-            <p>Don't have an account?</p>
+            <p>Don&apos;t have an account?</p>
             <Link to="/register" className="text-rose-400 hover:text-rose-300">
               Sign up
             </Link>

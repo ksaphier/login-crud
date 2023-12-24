@@ -20,7 +20,7 @@ function TasksPage() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-8">
+    <div className="flex flex-col items-center justify-center py-8" style={{ height: 'calc(100vh)' }}>
       <div className="w-full max-w-3xl px-4">
         <TaskCard tasks={tasks} onDelete={handleDelete} />
       </div>
