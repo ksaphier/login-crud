@@ -52,4 +52,4 @@ Visita `http://localhost:3000` en tu navegador para ver la aplicación en funcio
 Este proyecto es principalmente un tutorial y no está activamente buscando contribuciones. Sin embargo, si encuentras un error o tienes alguna sugerencia, siéntete libre de abrir un issue en este repositorio.
 
 ## Licencia
-Este proyecto está bajo la licencia [MIT].
+Este proyecto está bajo la licencia `MIT`.
